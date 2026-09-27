@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DAYLY — Design Preview — Make Today Count</title>
+<style>
+  :root {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --ink: #0F172A;
+    --muted: #334155;
+    --faint: #64748B;
+    --primary: #4F46E5;
+    --primary-hover: #4338CA;
+    --primary-ink: #FFFFFF;
+    --secondary-bg: #EEF2FF;
+    --secondary-ink: #1E1B4B;
+    --secondary-border: #4F46E5;
+    --success: #047857;
+    --success-bg: #ECFDF5;
+    --warning: #92400E;
+    --warning-bg: #FFFBEB;
+    --danger: #B91C1C;
+    --danger-bg: #FEF2F2;
+    --border: #CBD5E1;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 64px; }
+  header.hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .eyebrow { color: var(--primary); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 13px; margin: 0 0 8px; }
+  h1 { font-size: 40px; line-height: 1.15; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .tagline { font-size: 19px; color: var(--muted); margin: 0 0 20px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } h1 { font-size: 32px; } }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .card h2 { font-size: 20px; margin: 0 0 12px; }
+  .card p { color: var(--muted); margin: 0 0 12px; }
+  /* colors */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 12px; }
+  .swatch { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
+  .swatch .chip { height: 56px; }
+  .swatch .meta { padding: 8px 10px; font-size: 13px; }
+  .swatch .meta strong { display: block; font-size: 13px; color: var(--ink); }
+  .swatch .meta span { color: var(--muted); }
+  /* typography */
+  .type-scale h1.demo { font-size: 36px; margin: 8px 0; }
+  .type-scale h2.demo { font-size: 24px; margin: 8px 0; }
+  .type-scale h3.demo { font-size: 19px; margin: 8px 0; }
+  .type-scale p.demo { margin: 8px 0; }
+  .type-scale small.demo { color: var(--muted); }
+  /* buttons + input */
+  .btn {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1;
+    padding: 14px 22px;
+    min-height: 44px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 6px 8px 6px 0;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: var(--primary-ink);
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+  }
+  .btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+  .btn-primary:focus-visible, .btn-secondary:focus-visible, input:focus-visible {
+    outline: 3px solid #0F172A;
+    outline-offset: 2px;
+  }
+  .btn-secondary {
+    background: var(--secondary-bg);
+    color: var(--secondary-ink);
+    border-color: var(--secondary-border);
+  }
+  .btn-secondary:hover { background: #E0E7FF; }
+  label { display: block; font-weight: 700; margin: 12px 0 6px; color: var(--ink); }
+  input[type="text"] {
+    width: 100%;
+    padding: 13px 14px;
+    font-size: 16px;
+    color: var(--ink);
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+  }
+  input[type="text"]::placeholder { color: var(--faint); }
+  .hint { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  /* task cards */
+  .task {
+    border: 1px solid var(--border);
+    border-left-width: 6px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    background: #fff;
+  }
+  .task.high { border-left-color: var(--danger); }
+  .task.medium { border-left-color: #D97706; }
+  .task.low { border-left-color: var(--success); }
+  .task .row { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+  .task strong { font-size: 16px; }
+  .badge {
+    display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.04em;
+    text-transform: uppercase; padding: 5px 10px; border-radius: 999px; border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .badge.high { background: var(--danger-bg); color: var(--danger); border-color: #FECACA; }
+  .badge.medium { background: var(--warning-bg); color: var(--warning); border-color: #FDE68A; }
+  .badge.low { background: var(--success-bg); color: var(--success); border-color: #A7F3D0; }
+  .task .meta { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  footer { margin-top: 24px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Design preview</p>
+    <h1>DAYLY</h1>
+    <p class="tagline">Make Today Count — your AI-powered everyday life companion.</p>
+    <p style="color:#334155;max-width:62ch">This page previews the DAYLY visual system: high-contrast text, clear typography and spacing, a strengthened primary action, and sample productivity content. No external APIs or accounts required.</p>
+    <a class="btn btn-primary" href="#">Plan my day</a>
+    <a class="btn btn-secondary" href="#">See sample plan</a>
+  </header>
+
+  <div class="grid">
+    <section class="card" aria-label="Color palette">
+      <h2>Color palette</h2>
+      <p>Accessible contrast: dark ink on light surfaces, solid primary action, status colors with tinted backgrounds.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#4F46E5"></div><div class="meta"><strong>Primary</strong><span>#4F46E5</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#0F172A"></div><div class="meta"><strong>Ink / Text</strong><span>#0F172A</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #CBD5E1"></div><div class="meta"><strong>Surface</strong><span>#FFFFFF</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#F8FAFC"></div><div class="meta"><strong>Background</strong><span>#F8FAFC</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#EEF2FF"></div><div class="meta"><strong>Secondary wash</strong><span>#EEF2FF</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#B91C1C"></div><div class="meta"><strong>High priority</strong><span>#B91C1C</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#92400E"></div><div class="meta"><strong>Medium priority</strong><span>#92400E</span></div></div>
+        <div class="swatch"><div class="chip" style="background:#047857"></div><div class="meta"><strong>Low / Success</strong><span>#047857</span></div></div>
+      </div>
+    </section>
+
+    <section class="card type-scale" aria-label="Typography">
+      <h2>Typography</h2>
+      <p>System stack, generous line-height, clear hierarchy for actions and information.</p>
+      <h1 class="demo">Heading 1 — Plan your day</h1>
+      <h2 class="demo">Heading 2 — Today's top priorities</h2>
+      <h3 class="demo">Heading 3 — Morning check-in</h3>
+      <p class="demo">Body — DAYLY turns everything you need to do into a realistic plan showing what matters most and what to do next.</p>
+      <small class="demo">Small / hint text — Reminders stay useful, never annoying.</small>
+    </section>
+
+    <section class="card" aria-label="Buttons and input">
+      <h2>Buttons and sample input</h2>
+      <p>Strengthened primary button (solid, bold, high-contrast) and a clear secondary option.</p>
+      <button class="btn btn-primary" type="button">Add task</button>
+      <button class="btn btn-secondary" type="button">View evening review</button>
+      <form onsubmit="return false;" aria-label="Sample input">
+        <label for="sample-task">Sample input — add a responsibility</label>
+        <input id="sample-task" type="text" placeholder="e.g. Finish proposal, call 3 clients, 2 PM meeting" />
+        <div class="hint">Sample only — nothing is sent anywhere.</div>
+      </form>
+    </section>
+
+    <section class="card" aria-label="Sample tasks">
+      <h2>Sample task / card area</h2>
+      <p>Priority and status are easy to scan at a glance.</p>
+      <div class="task high">
+        <div class="row"><strong>9:00 AM — Finish business proposal</strong><span class="badge high">High</span></div>
+        <div class="meta">Due today · 60 min · Status: planned</div>
+      </div>
+      <div class="task medium">
+        <div class="row"><strong>11:00 AM — Call three clients</strong><span class="badge medium">Medium</span></div>
+        <div class="meta">30 min · Status: planned</div>
+      </div>
+      <div class="task low">
+        <div class="row"><strong>6:00 PM — Exercise</strong><span class="badge low">Low</span></div>
+        <div class="meta">30 min · Habit · Status: planned</div>
+      </div>
+    </section>
+  </div>
+
+  <footer>DAYLY design preview · mock content only · opens locally with no dependencies.</footer>
+</div>
+</body>
+</html>

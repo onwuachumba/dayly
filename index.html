@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DAYLY — Make Today Count</title>
+<style>
+  :root {
+    --bg: #F8FAFC; --surface: #FFFFFF; --ink: #0F172A; --muted: #334155;
+    --border: #CBD5E1; --primary: #4F46E5; --primary-hover: #4338CA;
+    --danger: #B91C1C; --danger-bg: #FEF2F2; --warning: #92400E; --warning-bg: #FFFBEB;
+    --success: #047857; --success-bg: #ECFDF5; --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 28px 18px 60px; }
+  header.top { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+  header.top h1 { margin: 0; font-size: 30px; letter-spacing: -0.02em; }
+  header.top .tag { margin: 4px 0 0; color: var(--muted); font-weight: 600; }
+  .flow { font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: 0.04em; margin: 10px 0 0; }
+  .grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+  .card h2 { margin: 0 0 10px; font-size: 19px; }
+  .muted { color: var(--muted); }
+  .add-row { display: flex; gap: 10px; margin-top: 10px; }
+  input[type="text"] { flex: 1; padding: 13px 14px; font-size: 16px; border: 2px solid var(--border);
+    border-radius: 10px; color: var(--ink); background: #fff; min-width: 0; }
+  input[type="text"]:focus-visible, button:focus-visible { outline: 3px solid #0F172A; outline-offset: 2px; }
+  .btn { font-weight: 800; font-size: 16px; padding: 13px 20px; min-height: 44px; border-radius: 10px;
+    border: 2px solid var(--primary); cursor: pointer; }
+  .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(79,70,229,.35); }
+  .btn-primary:hover { background: var(--primary-hover); }
+  .btn-ghost { background: #fff; color: var(--ink); border-color: var(--border); font-weight: 700; font-size: 14px; padding: 8px 12px; min-height: 36px; }
+  ul.tasks { list-style: none; margin: 12px 0 0; padding: 0; }
+  li.task { border: 1px solid var(--border); border-left-width: 6px; border-radius: 10px; padding: 12px 14px; margin: 10px 0; background: #fff; }
+  li.task.high { border-left-color: var(--danger); } li.task.medium { border-left-color: #D97706; } li.task.low { border-left-color: var(--success); }
+  li.task.done { opacity: 0.75; } li.task.done .title { text-decoration: line-through; }
+  .task-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+  .title { font-weight: 700; }
+  .badge { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 5px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .badge.high { background: var(--danger-bg); color: var(--danger); border-color: #FECACA; }
+  .badge.medium { background: var(--warning-bg); color: var(--warning); border-color: #FDE68A; }
+  .badge.low { background: var(--success-bg); color: var(--success); border-color: #A7F3D0; }
+  .task-meta { font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .task-actions { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .progress { height: 12px; background: #E2E8F0; border-radius: 999px; overflow: hidden; margin: 10px 0 6px; }
+  .progress > div { height: 100%; background: var(--primary); width: 0%; transition: width .25s ease; }
+  .plan li { margin: 8px 0; }
+  .note { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>DAYLY</h1>
+    <p class="tag">Make Today Count — your AI-powered everyday life companion.</p>
+    <p class="flow">Capture → Understand → Prioritize → Plan → Remind → Adapt → Review</p>
+  </header>
+
+  <div class="grid">
+    <main>
+      <section class="card" aria-label="Dashboard">
+        <h2 id="greeting">Good morning! Let's make today count.</h2>
+        <p class="muted" id="summary">Mock data only — nothing leaves your browser.</p>
+        <div class="progress" aria-label="Today's progress"><div id="progressBar"></div></div>
+        <p class="muted" id="progressText">0 of 0 tasks completed</p>
+      </section>
+
+      <section class="card" aria-label="Add task">
+        <h2>Capture — add a responsibility</h2>
+        <div class="add-row">
+          <input id="newTaskInput" type="text" placeholder="e.g. Prepare tomorrow's presentation" aria-label="Add a task" />
+          <button id="addTaskBtn" class="btn btn-primary" type="button">Add task</button>
+        </div>
+        <p class="note">Local prototype: tasks are mock/test data stored only in this page session.</p>
+        <ul class="tasks" id="taskList"></ul>
+      </section>
+
+      <section class="card" aria-label="Today's plan">
+        <h2>Today's plan</h2>
+        <ol class="plan muted" id="planList"></ol>
+      </section>
+    </main>
+
+    <aside>
+      <section class="card" aria-label="Reminders">
+        <h2>Reminders &amp; upcoming</h2>
+        <ul class="plan muted" id="reminderList"></ul>
+      </section>
+
+      <section class="card" aria-label="Review and adapt">
+        <h2>Evening review &amp; adapt</h2>
+        <p class="muted" id="reviewText"></p>
+        <button id="adaptBtn" class="btn-ghost" type="button">Move remaining High task to tomorrow</button>
+        <p class="note">DAYLY adapts to your life — move, don't abandon.</p>
+      </section>
+    </aside>
+  </div>
+
+  <p class="note">DAYLY local prototype · mock data only · no login, database, or external APIs. Open this file directly in a browser.</p>
+</div>
+
+<script>
+(function () {
+  var mockTasks = [
+    { id: 1, title: "Finish business proposal", time: "9:00 AM", priority: "High", status: "planned", detail: "Due today · 60 min" },
+    { id: 2, title: "Call three clients", time: "11:00 AM", priority: "Medium", status: "planned", detail: "30 min" },
+    { id: 3, title: "Client meeting", time: "2:00 PM", priority: "High", status: "planned", detail: "Fixed appointment · 60 min" },
+    { id: 4, title: "Buy groceries", time: "4:00 PM", priority: "Low", status: "planned", detail: "30 min" },
+    { id: 5, title: "Exercise", time: "6:00 PM", priority: "Low", status: "planned", detail: "Habit · 30 min" }
+  ];
+  var nextId = 6;
+
+  var taskList = document.getElementById("taskList");
+  var planList = document.getElementById("planList");
+  var reminderList = document.getElementById("reminderList");
+  var progressBar = document.getElementById("progressBar");
+  var progressText = document.getElementById("progressText");
+  var reviewText = document.getElementById("reviewText");
+  var greeting = document.getElementById("greeting");
+  var input = document.getElementById("newTaskInput");
+  var addBtn = document.getElementById("addTaskBtn");
+  var adaptBtn = document.getElementById("adaptBtn");
+
+  var hour = new Date().getHours();
+  var daypart = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+  greeting.textContent = daypart + "! Let's make today count.";
+
+  function level(p) { return (p || "Low").toLowerCase(); }
+
+  function render() {
+    taskList.innerHTML = "";
+    mockTasks.forEach(function (t) {
+      var li = document.createElement("li");
+      li.className = "task " + level(t.priority) + (t.status === "done" ? " done" : "");
+      var top = document.createElement("div");
+      top.className = "task-top";
+      var title = document.createElement("span");
+      title.className = "title";
+      title.textContent = t.time + " — " + t.title;
+      var badge = document.createElement("span");
+      badge.className = "badge " + level(t.priority);
+      badge.textContent = t.priority + " · " + t.status;
+      top.appendChild(title); top.appendChild(badge);
+      var meta = document.createElement("div");
+      meta.className = "task-meta"; meta.textContent = t.detail;
+      var actions = document.createElement("div");
+      actions.className = "task-actions";
+      var doneBtn = document.createElement("button");
+      doneBtn.className = "btn-ghost"; doneBtn.type = "button";
+      doneBtn.textContent = t.status === "done" ? "Reopen" : "Complete";
+      doneBtn.onclick = function () { t.status = t.status === "done" ? "planned" : "done"; render(); };
+      var delBtn = document.createElement("button");
+      delBtn.className = "btn-ghost"; delBtn.type = "button"; delBtn.textContent = "Delete";
+      delBtn.onclick = function () { mockTasks = mockTasks.filter(function (x) { return x.id !== t.id; }); render(); };
+      actions.appendChild(doneBtn); actions.appendChild(delBtn);
+      li.appendChild(top); li.appendChild(meta); li.appendChild(actions);
+      taskList.appendChild(li);
+    });
+
+    planList.innerHTML = "";
+    mockTasks.forEach(function (t) {
+      var li = document.createElement("li");
+      li.textContent = t.time + " — " + t.title + " (" + t.priority + ", " + t.status + ")";
+      planList.appendChild(li);
+    });
+
+    var upcoming = mockTasks.filter(function (t) { return t.status !== "done"; }).slice(0, 3);
+    reminderList.innerHTML = "";
+    if (!upcoming.length) {
+      var li = document.createElement("li"); li.textContent = "All clear — nothing remaining."; reminderList.appendChild(li);
+    } else {
+      upcoming.forEach(function (t) {
+        var li = document.createElement("li"); li.textContent = t.time + " — " + t.title; reminderList.appendChild(li);
+      });
+    }
+
+    var total = mockTasks.length;
+    var done = mockTasks.filter(function (t) { return t.status === "done"; }).length;
+    var pct = total ? Math.round((done / total) * 100) : 0;
+    progressBar.style.width = pct + "%";
+    progressText.textContent = done + " of " + total + " tasks completed (" + pct + "%)";
+    var remaining = total - done;
+    reviewText.textContent = "Completed: " + done + " · Remaining: " + remaining + ". " +
+      (remaining ? "Would you like to move the rest to tomorrow?" : "Nice work — today is fully complete.");
+  }
+
+  function addTask() {
+    var v = input.value.trim();
+    if (!v) { input.focus(); return; }
+    mockTasks.push({ id: nextId++, title: v, time: "Unscheduled", priority: "Medium", status: "planned", detail: "Added just now · mock data" });
+    input.value = ""; input.focus(); render();
+  }
+
+  addBtn.onclick = addTask;
+  input.addEventListener("keydown", function (e) { if (e.key === "Enter") addTask(); });
+  adaptBtn.onclick = function () {
+    var t = mockTasks.find(function (x) { return x.priority === "High" && x.status !== "done"; });
+    if (t) { t.time = "Tomorrow AM"; t.detail += " · moved to tomorrow"; }
+    render();
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>
