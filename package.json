@@ -1,0 +1,38 @@
+{
+  "name": "dayly-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DAYLY Phase 2 web app — Next.js + Prisma + Netlify Database + Better Auth, deployed on Netlify",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@better-auth/core": "^1.7.7",
+    "@better-auth/prisma-adapter": "^1.7.7",
+    "@netlify/blobs": "^8.0.0",
+    "@netlify/database": "^2.0.1",
+    "@prisma/client": "^5.22.0",
+    "better-auth": "^1.7.7",
+    "better-call": "^1.4.0",
+    "drizzle-orm": "^1.0.0-beta.22",
+    "next": "^14.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "drizzle-kit": "^1.0.0-beta.22",
+    "postcss": "^8.4.47",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.4"
+  }
+}

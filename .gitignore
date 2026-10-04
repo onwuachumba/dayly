@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+dist/
+.next/
+*.tsbuildinfo
+next-env.d.ts
+.netlify/
+
+# Env — never commit real values (TRD §6)
+.env
+.env.local
+.env.production
+
+# Prisma dev migrations (local only)
+**/prisma/migrations/dev/
+
+# Local Netlify folder
+.netlify
