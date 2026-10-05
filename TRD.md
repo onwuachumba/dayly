@@ -130,5 +130,6 @@ UI mapping: `/today` (task list + plan + progress), `/goals`, `/habits`, reminde
 | 2026-10-04 | Prisma ↔ Netlify connection: `lib/db.ts` `dbUrl()` (`getConnectionString()` + `DATABASE_URL` fallback) + `datasourceUrl` override; `next build` | PASS — types + lint clean; setup-mode guards preserved |
 | — | sign-up/in (Better Auth) → tasks CRUD + scoping | BLOCKED — needs `BETTER_AUTH_SECRET` + database (local `netlify dev` or Netlify env) |
 | 2026-10-05 | Production deploy (dayly001): env set, push 0d929ef, migration auto-applied, CLI redeploy (git-build lacked server function); fixed Prisma `binaryTargets` (rhel engine) + migration LF endings | PASS — `db:up`; sign-up/in, task create/list/update/delete all live-verified |
+| 2026-10-05 | Dashboard 500 fix: `greeting()` moved from `"use client"` `useTasks.ts` to server-safe `lib/greeting.ts`; CLI redeploy | PASS — prod `/dashboard` 200 with real data; health `db:up` |
 | — | plans + goals + habits + reminders + Blobs upload | — |
 | — | Netlify deploy from `main` | — |

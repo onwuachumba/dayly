@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Bell, CheckCircle2, Flame, ListTodo, TriangleAlert } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { prisma, dbUrl } from "@/lib/db";
-import { greeting } from "@/components/useTasks";
+import { greeting } from "@/lib/greeting";
 import { Badge, Card, EmptyState, PageHeader, ProgressBar } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
