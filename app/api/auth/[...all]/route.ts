@@ -11,10 +11,26 @@ function notConfigured() {
 
 export async function GET(req: NextRequest) {
   if (!auth) return notConfigured();
-  return toNextJsHandler(auth).GET(req);
+  try {
+    return await toNextJsHandler(auth).GET(req);
+  } catch (err) {
+    console.error("auth GET failed", err);
+    return NextResponse.json(
+      { error: { code: "AUTH_ERROR", message: err instanceof Error ? err.message : "Authentication failed" } },
+      { status: 500 },
+    );
+  }
 }
 
 export async function POST(req: NextRequest) {
   if (!auth) return notConfigured();
-  return toNextJsHandler(auth).POST(req);
+  try {
+    return await toNextJsHandler(auth).POST(req);
+  } catch (err) {
+    console.error("auth POST failed", err);
+    return NextResponse.json(
+      { error: { code: "AUTH_ERROR", message: err instanceof Error ? err.message : "Authentication failed" } },
+      { status: 500 },
+    );
+  }
 }

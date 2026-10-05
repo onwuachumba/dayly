@@ -5,6 +5,7 @@ dist/
 *.tsbuildinfo
 next-env.d.ts
 .netlify/
+deno.lock
 
 # Env — never commit real values (TRD §6)
 .env

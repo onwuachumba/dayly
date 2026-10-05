@@ -1,0 +1,3 @@
+# Keep migration SQL byte-stable (LF) so Netlify checksums match after apply.
+netlify/database/migrations/*.sql text eol=lf
+*.prisma text eol=lf
