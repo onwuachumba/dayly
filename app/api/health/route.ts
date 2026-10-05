@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma, dbUrl } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   let db: "up" | "down" | "not-configured" = "not-configured";
   if (dbUrl()) {
