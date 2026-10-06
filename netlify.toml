@@ -3,5 +3,10 @@
   command = "npx prisma generate && npm run build"
   publish = ".next"
 
+# Pin the Next.js Runtime explicitly so Git-triggered platform builds package
+# the server function + redirects exactly like the verified CLI pipeline does.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "true"
