@@ -72,10 +72,10 @@ export default function RemindersPage() {
           body="Schedule your first reminder above and DAYLY will keep it on your radar."
         />
       ) : (
-        <ol className="relative space-y-3 border-l-2 border-indigo-100 pl-5">
+        <ol className="relative space-y-3 border-l-2 border-pine-200 pl-5">
           {reminders.map((r) => (
             <li key={r.id} className="relative">
-              <span className="absolute -left-[27px] top-4 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-indigo-100" aria-hidden="true" />
+              <span className="absolute -left-[27px] top-4 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-pine-100" aria-hidden="true" />
               <Card className="!p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">

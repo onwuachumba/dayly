@@ -136,7 +136,7 @@ export default function HabitsPage() {
                 </div>
                 <button
                   onClick={() => void checkin(h)}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-emerald-700"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white transition hover:bg-primaryHover"
                 >
                   <Check size={16} /> Check in
                 </button>

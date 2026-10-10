@@ -60,7 +60,7 @@ export function TaskCard({
             disabled={busy}
             aria-label={`Change priority, currently ${task.priority}`}
             title="Cycle priority"
-            className="rounded-lg p-1.5 text-slate-400 transition hover:bg-indigo-50 hover:text-primary"
+            className="rounded-lg p-1.5 text-slate-400 transition hover:bg-pine-50 hover:text-primary"
           >
             <RefreshCw size={16} />
           </button>

@@ -102,7 +102,7 @@ export default function CalendarPage() {
                       "flex min-h-[44px] flex-col items-center justify-center rounded-xl text-sm font-bold transition",
                       selected === dayKey(d)
                         ? "bg-primary text-white shadow-sm"
-                        : "text-ink hover:bg-indigo-50",
+                        : "text-ink hover:bg-pine-50",
                     )}
                   >
                     {d.getDate()}

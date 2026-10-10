@@ -29,7 +29,7 @@ export default async function DashboardPage() {
   if (!dbUrl()) {
     return (
       <main>
-        <PageHeader title={`${greeting()} 👋`} sub="Here's what your day looks like." />
+        <PageHeader title={`${greeting()}`} sub="Here's what your day looks like." />
         <EmptyState
           icon={<ListTodo size={22} />}
           title="Database is not configured"
@@ -46,7 +46,7 @@ export default async function DashboardPage() {
   const topTasks = tasks.filter((t) => t.status !== "DONE").slice(0, 5);
 
   const stats = [
-    { icon: ListTodo, label: "Today's Tasks", value: tasks.length, sub: `${tasks.length - done} remaining`, tone: "text-primary bg-indigo-50" },
+    { icon: ListTodo, label: "Today's Tasks", value: tasks.length, sub: `${tasks.length - done} remaining`, tone: "text-primary bg-pine-50" },
     { icon: CheckCircle2, label: "Completed", value: done, sub: tasks.length ? `${Math.round((done / tasks.length) * 100)}% done` : "Nothing yet", tone: "text-emerald-600 bg-emerald-50" },
     { icon: TriangleAlert, label: "High Priority", value: high, sub: high ? "Needs attention" : "All clear", tone: "text-red-600 bg-red-50" },
     { icon: Bell, label: "Upcoming", value: upcoming, sub: reminders.length ? "Reminders set" : "None scheduled", tone: "text-amber-600 bg-amber-50" },
@@ -55,7 +55,7 @@ export default async function DashboardPage() {
   return (
     <main>
       <PageHeader
-        title={`${greeting()}, ${name} 👋`}
+        title={`${greeting()}, ${name}`}
         sub="Here's what your day looks like."
         action={
           <Link

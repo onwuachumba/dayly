@@ -5,7 +5,7 @@ export function Card({ className, children }: { className?: string; children: Re
   return (
     <div
       className={cn(
-        "rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,0.05),0_8px_24px_-16px_rgba(79,70,229,0.25)]",
+        "rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_1px_2px_rgba(28,36,32,0.06),0_10px_28px_-20px_rgba(30,77,59,0.35)]",
         className,
       )}
     >
@@ -27,13 +27,13 @@ export function PageHeader({ title, sub, action }: { title: string; sub?: string
 }
 
 const badgeTones: Record<string, string> = {
-  HIGH: "bg-red-50 text-red-700 ring-red-200",
-  MEDIUM: "bg-amber-50 text-amber-800 ring-amber-200",
-  LOW: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-  PLANNED: "bg-indigo-50 text-indigo-700 ring-indigo-200",
-  DONE: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  HIGH: "bg-red-50 text-red-800 ring-red-200",
+  MEDIUM: "bg-amber-50 text-amber-900 ring-amber-200",
+  LOW: "bg-emerald-50 text-emerald-800 ring-emerald-200",
+  PLANNED: "bg-pine-50 text-pine-700 ring-pine-200",
+  DONE: "bg-emerald-50 text-emerald-800 ring-emerald-200",
   MOVED: "bg-slate-100 text-slate-600 ring-slate-200",
-  ACTIVE: "bg-indigo-50 text-indigo-700 ring-indigo-200",
+  ACTIVE: "bg-pine-50 text-pine-700 ring-pine-200",
   ARCHIVED: "bg-slate-100 text-slate-600 ring-slate-200",
 };
 
@@ -61,7 +61,7 @@ export function ProgressBar({ value, max = 100 }: { value: number; max?: number 
       aria-valuemax={100}
     >
       <div
-        className="h-full rounded-full bg-gradient-to-r from-indigo-600 to-indigo-400 transition-[width] duration-500"
+        className="h-full rounded-full bg-primary transition-[width] duration-500"
         style={{ width: `${pct}%` }}
       />
     </div>
@@ -95,7 +95,7 @@ export function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/60 px-6 py-12 text-center">
-      {icon && <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-primary">{icon}</div>}
+      {icon && <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-pine-50 text-primary">{icon}</div>}
       <p className="text-lg font-extrabold text-ink">{title}</p>
       <p className="mt-1 max-w-sm text-sm text-muted">{body}</p>
       {action && <div className="mt-4">{action}</div>}
@@ -124,7 +124,7 @@ export const btnPrimary =
   "inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-[15px] font-bold text-white shadow-[0_6px_16px_-8px_rgba(79,70,229,0.7)] transition hover:bg-primaryHover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:opacity-60";
 
 export const btnSecondary =
-  "inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary/25 bg-indigo-50/60 px-5 py-[10px] text-[15px] font-bold text-ink transition hover:border-primary/50 hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
+  "inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary/25 bg-pine-50/60 px-5 py-[10px] text-[15px] font-bold text-ink transition hover:border-primary/50 hover:bg-pine-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
 
 export const btnGhost =
   "inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-bold text-muted transition hover:bg-slate-100 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";

@@ -29,7 +29,7 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="grid min-h-screen bg-[#F7F8FC] lg:grid-cols-2">
+    <div className="grid min-h-screen bg-ivory lg:grid-cols-2">
       <div className="flex items-center justify-center px-4 py-10 sm:px-8">
         <div className="w-full max-w-md">
           <Link href="/"><Logo /></Link>
@@ -56,7 +56,7 @@ export default function SignInPage() {
           </form>
         </div>
       </div>
-      <aside className="hidden flex-col justify-between bg-ink p-10 text-white lg:flex" aria-hidden="true">
+      <aside className="hidden flex-col justify-between bg-pine-900 p-10 text-white lg:flex" aria-hidden="true">
         <div />
         <div>
           <p className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[13px] font-bold ring-1 ring-inset ring-white/20">

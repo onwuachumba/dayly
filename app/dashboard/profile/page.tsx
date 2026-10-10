@@ -30,7 +30,7 @@ export default async function ProfilePage() {
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <div className="flex items-center gap-4">
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-xl font-extrabold text-white">
+            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-xl font-extrabold text-white">
               {(row?.name || session?.user?.name || session?.user?.email || "D").charAt(0).toUpperCase()}
             </span>
             <div className="min-w-0">

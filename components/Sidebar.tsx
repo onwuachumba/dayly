@@ -60,8 +60,8 @@ function NavSection({ title, items, active, onNavigate }: {
                 className={cn(
                   "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-semibold transition",
                   isActive
-                    ? "bg-indigo-600 text-white shadow-[0_6px_16px_-8px_rgba(79,70,229,0.8)]"
-                    : "text-slate-600 hover:bg-indigo-50 hover:text-ink",
+                    ? "bg-primary text-white shadow-[0_6px_16px_-8px_rgba(20,53,39,0.8)]"
+                    : "text-slate-600 hover:bg-pine-50 hover:text-ink",
                 )}
               >
                 <Icon size={19} strokeWidth={isActive ? 2.4 : 2} className={isActive ? "" : "text-slate-400 group-hover:text-primary"} />
@@ -106,7 +106,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#F4F5FA]">
+    <div className="min-h-screen bg-ivory">
       {/* Desktop sidebar */}
       <aside className="fixed inset-y-0 left-0 hidden w-[248px] border-r border-slate-200/70 bg-white px-4 py-5 lg:block">
         <SidebarBody active={pathname} onNavigate={() => undefined} />

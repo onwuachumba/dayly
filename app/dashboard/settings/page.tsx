@@ -30,7 +30,7 @@ export default function SettingsPage() {
         {SECTIONS.map(({ icon: Icon, title, body }) => (
           <Card key={title} className="opacity-95">
             <div className="flex items-center justify-between">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-primary">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-pine-50 text-primary">
                 <Icon size={20} />
               </span>
               <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-500">
