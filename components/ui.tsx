@@ -5,7 +5,7 @@ export function Card({ className, children }: { className?: string; children: Re
   return (
     <div
       className={cn(
-        "rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_1px_2px_rgba(28,36,32,0.06),0_10px_28px_-20px_rgba(30,77,59,0.35)]",
+        "rounded-2xl border border-stone-200/90 bg-white p-5 shadow-[0_1px_2px_rgba(28,36,32,0.06),0_10px_28px_-20px_rgba(30,77,59,0.35)]",
         className,
       )}
     >
@@ -94,7 +94,7 @@ export function EmptyState({
   action?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/60 px-6 py-12 text-center">
+    <div className="flex flex-col items-center rounded-2xl border border-dashed border-stone-300 bg-white/60 px-6 py-12 text-center">
       {icon && <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-pine-50 text-primary">{icon}</div>}
       <p className="text-lg font-extrabold text-ink">{title}</p>
       <p className="mt-1 max-w-sm text-sm text-muted">{body}</p>
@@ -130,6 +130,6 @@ export const btnGhost =
   "inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-bold text-muted transition hover:bg-slate-100 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
 
 export const inputCls =
-  "w-full rounded-xl border-2 border-slate-200 bg-white px-3.5 py-2.5 text-[15px] text-ink placeholder:text-slate-400 transition focus:border-primary focus:outline-none";
+  "w-full rounded-xl border-2 border-stone-200 bg-white px-3.5 py-2.5 text-[15px] text-ink placeholder:text-slate-400 transition focus:border-primary focus:outline-none";
 
 export const labelCls = "mb-1.5 block text-sm font-bold text-ink";

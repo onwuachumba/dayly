@@ -107,7 +107,7 @@ export default function CalendarPage() {
                   >
                     {d.getDate()}
                     {(byDay.get(dayKey(d)) || []).length > 0 && (
-                      <span className={cn("mt-0.5 h-1.5 w-1.5 rounded-full", selected === dayKey(d) ? "bg-white" : "bg-primary")} aria-hidden="true" />
+                      <span className={cn("mt-0.5 h-1.5 w-1.5 rounded-full", selected === dayKey(d) ? "bg-white" : "bg-golddeep")} aria-hidden="true" />
                     )}
                   </button>
                 ),

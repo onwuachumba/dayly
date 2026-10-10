@@ -123,12 +123,12 @@ export default async function Home() {
       </header>
 
       {/* Hero */}
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-2 lg:pt-20">
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-12 pt-10 sm:px-6 lg:grid-cols-2 lg:pt-14">
         <div>
           <p className="inline-flex items-center gap-1.5 rounded-full bg-pine-50 px-3 py-1 text-[13px] font-bold text-primary ring-1 ring-inset ring-pine-200">
             <Sparkles size={14} /> Your AI-powered everyday life companion
           </p>
-          <h1 className="mt-4 text-[42px] font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="mt-4 text-[38px] font-extrabold leading-[1.05] tracking-tight sm:text-5xl">
             Make Today Count.
           </h1>
           <p className="mt-4 max-w-lg text-lg leading-relaxed text-muted">
@@ -149,8 +149,8 @@ export default async function Home() {
       </section>
 
       {/* How it works */}
-      <section id="how" className="border-y border-slate-200/60 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section id="how" className="border-y border-stone-200/70 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-primary">How DAYLY works</p>
           <h2 className="mt-2 max-w-xl text-3xl font-extrabold tracking-tight sm:text-4xl">
             From scattered thoughts to a day that flows.
@@ -174,7 +174,7 @@ export default async function Home() {
       </section>
 
       {/* Features */}
-      <section id="features" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section id="features" className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-primary">Why DAYLY</p>
         <h2 className="mt-2 max-w-xl text-3xl font-extrabold tracking-tight sm:text-4xl">
           Everything your day needs, in one calm place.
@@ -219,8 +219,8 @@ export default async function Home() {
       </section>
 
       {/* Who */}
-      <section id="who" className="border-t border-slate-200/60 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section id="who" className="border-t border-stone-200/70 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-primary">Who it&apos;s for</p>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Built for busy people like you.</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, CalendarClock, ListTodo } from "lucide-react";
 import { TaskCard } from "@/components/TaskCard";
-import { Card, EmptyState, ErrorState, LoadingState, PageHeader } from "@/components/ui";
+import { EmptyState, ErrorState, LoadingState, PageHeader } from "@/components/ui";
 import { useTasks } from "@/components/useTasks";
 
 const ORDER = { HIGH: 0, MEDIUM: 1, LOW: 2 } as const;
@@ -51,15 +51,15 @@ export default function TodayPage() {
           }
         />
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-7">
           {groups.map(
             (g) =>
               g.items.length > 0 && (
-                <Card key={g.title} className="!p-4">
-                  <h2 className="mb-2.5 flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-slate-400">
-                    <CalendarClock size={15} /> {g.title} · {g.items.length}
+                <section key={g.title} aria-label={g.title}>
+                  <h2 className="mb-1 flex items-center gap-2 px-3 text-[13px] font-extrabold uppercase tracking-[0.1em] text-muted">
+                    <CalendarClock size={14} /> {g.title} · {g.items.length}
                   </h2>
-                  <ul className="space-y-2.5">
+                  <ul className="divide-y divide-stone-200/80 border-y border-stone-200/80">
                     {g.items.map((t) => (
                       <TaskCard
                         key={t.id}
@@ -71,15 +71,15 @@ export default function TodayPage() {
                       />
                     ))}
                   </ul>
-                </Card>
+                </section>
               ),
           )}
           {doneToday.length > 0 && (
-            <Card className="!p-4 border-emerald-200/60">
-              <h2 className="mb-2.5 text-sm font-extrabold uppercase tracking-wide text-emerald-600">
+            <section aria-label="Completed">
+              <h2 className="mb-1 px-3 text-[13px] font-extrabold uppercase tracking-[0.1em] text-emerald-700">
                 Completed · {doneToday.length}
               </h2>
-              <ul className="space-y-2.5">
+              <ul className="divide-y divide-stone-200/80 border-y border-stone-200/80">
                 {doneToday.map((t) => (
                   <TaskCard
                     key={t.id}
@@ -91,7 +91,7 @@ export default function TodayPage() {
                   />
                 ))}
               </ul>
-            </Card>
+            </section>
           )}
         </div>
       )}
