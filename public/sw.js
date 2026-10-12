@@ -1,4 +1,4 @@
-/* DAYLY service worker — minimal and privacy-safe.
+/* DAYLY service worker — minimal and privacy-safe (plain JavaScript).
  *
  * Policy:
  * - NEVER cache /api/* (auth, sessions, user data). All API traffic is
@@ -15,31 +15,31 @@ const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const OFFLINE_URL = "/offline";
 
 self.addEventListener("install", (event) => {
-  (event as ExtendableEvent).waitUntil(
-    caches.open(STATIC_CACHE).then((cache) =>
-      cache.addAll(["/offline", "/icons/icon-192.png", "/icons/maskable-512.png"]),
-    ).catch(() => undefined),
+  event.waitUntil(
+    caches
+      .open(STATIC_CACHE)
+      .then((cache) => cache.addAll(["/offline", "/icons/icon-192.png", "/icons/maskable-512.png"]))
+      .catch(() => undefined),
   );
-  (self as unknown as { skipWaiting: () => void }).skipWaiting();
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
-  (event as ExtendableEvent).waitUntil(
+  event.waitUntil(
     (async () => {
       const keys = await caches.keys();
       await Promise.all(keys.filter((k) => !k.startsWith(CACHE_VERSION)).map((k) => caches.delete(k)));
-      await (self as unknown as { clients: { claim: () => Promise<void> } }).clients.claim();
+      await self.clients.claim();
     })(),
   );
 });
 
-function isApiRequest(url: URL): boolean {
+function isApiRequest(url) {
   return url.pathname.startsWith("/api/");
 }
 
 self.addEventListener("fetch", (event) => {
-  const evt = event as FetchEvent;
-  const { request } = evt;
+  const { request } = event;
   if (request.method !== "GET") return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
@@ -49,7 +49,7 @@ self.addEventListener("fetch", (event) => {
 
   // Versioned static assets + icons: cache-first.
   if (url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/")) {
-    evt.respondWith(
+    event.respondWith(
       (async () => {
         const cached = await caches.match(request);
         if (cached) return cached;
@@ -67,11 +67,11 @@ self.addEventListener("fetch", (event) => {
   // Navigations: network-first, offline fallback. Never serve app pages stale
   // as if they were current user data — the fallback page says so explicitly.
   if (request.mode === "navigate") {
-    evt.respondWith(
+    event.respondWith(
       (async () => {
         try {
           return await fetch(request);
-        } catch {
+        } catch (err) {
           const fallback = await caches.match(OFFLINE_URL);
           return (
             fallback ||
@@ -85,13 +85,3 @@ self.addEventListener("fetch", (event) => {
     );
   }
 });
-
-// Minimal ambient types so this file typechecks without DOM lib conflicts.
-declare const self: ServiceWorkerGlobalScope & typeof globalThis;
-interface FetchEvent extends Event {
-  request: Request;
-  respondWith(r: Promise<Response> | Response): void;
-}
-interface ExtendableEvent extends Event {
-  waitUntil(p: Promise<unknown>): void;
-}
