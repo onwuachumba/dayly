@@ -17,9 +17,21 @@ import { NextResponse } from "next/server";
  *    (69 hex chars with colons, e.g. "AA:BB:…").
  * 4. Redeploy, then verify at https://developers.google.com/digital-asset-links/tools/generator
  *    (or Play Console's verification check) before release review.
+ * NOTE: a DEBUG-TEST fingerprint is currently published below so the debug
+ * test APK verifies without a URL bar. Before any Play release, replace it
+ * with the release key fingerprint (step 3 above).
  */
 
+const DEBUG_TEST_FINGERPRINT =
+  "F9:4D:DC:AD:8F:51:DC:B1:C9:0D:A3:EC:08:E5:29:33:EA:6D:92:E6:0C:DD:4C:60:5B:BA:E5:7B:D7:7F:0B";
 const RELEASE_FINGERPRINT = "REPLACE_WITH_RELEASE_SHA256";
+
+// Served fingerprints: debug-test key (for the current test APK) always;
+// release key only once it is a real fingerprint (never the placeholder).
+const FINGERPRINTS = [DEBUG_TEST_FINGERPRINT];
+if (!RELEASE_FINGERPRINT.startsWith("REPLACE_")) {
+  FINGERPRINTS.push(RELEASE_FINGERPRINT);
+}
 
 export async function GET() {
   return NextResponse.json(
@@ -29,7 +41,7 @@ export async function GET() {
         target: {
           namespace: "android_app",
           package_name: "com.dayly.app",
-          sha256_cert_fingerprints: [RELEASE_FINGERPRINT],
+          sha256_cert_fingerprints: FINGERPRINTS,
         },
       },
     ],
