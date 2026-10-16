@@ -5,8 +5,9 @@
   "description": "DAYLY Phase 2 web app — Next.js + Prisma + Netlify Database + Better Auth, deployed on Netlify",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev"
   },
