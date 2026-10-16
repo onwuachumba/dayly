@@ -58,6 +58,17 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return data as T;
 }
 
+export type UserProfile = {
+  id: string;
+  email: string;
+  name: string | null;
+  workStart: string | null;
+  workEnd: string | null;
+  notifyDaily: boolean;
+  quietStart: string | null;
+  quietEnd: string | null;
+};
+
 export const api = {
   tasks: {
     list: (q = "") => request<{ items: Task[]; total: number }>(`/api/v1/tasks${q}`),
@@ -91,4 +102,13 @@ export const api = {
     remove: (id: string) => request<void>(`/api/v1/reminders/${id}`, { method: "DELETE" }),
   },
   me: () => request<{ user: { id: string; email: string; name: string | null } }>("/api/v1/me"),
+  meFull: () => request<{ user: UserProfile }>("/api/v1/me"),
+  mePatch: (body: {
+    name?: string;
+    workStart?: string | null;
+    workEnd?: string | null;
+    notifyDaily?: boolean;
+    quietStart?: string | null;
+    quietEnd?: string | null;
+  }) => request<{ user: UserProfile }>("/api/v1/me", { method: "PATCH", body: JSON.stringify(body) }),
 };

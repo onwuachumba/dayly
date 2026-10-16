@@ -13,7 +13,20 @@
   "maskableIconUrl": "https://dayly001.netlify.app/icons/maskable-512.png",
   "splashScreenFadeOutDuration": 300,
   "enableNotifications": false,
-  "shortcuts": true,
+  "shortcuts": [
+    {
+      "name": "Today's Plan",
+      "shortName": "Today",
+      "url": "https://dayly001.netlify.app/dashboard/today",
+      "chosenIconUrl": "https://dayly001.netlify.app/icons/icon-192.png"
+    },
+    {
+      "name": "My Tasks",
+      "shortName": "Tasks",
+      "url": "https://dayly001.netlify.app/dashboard/tasks",
+      "chosenIconUrl": "https://dayly001.netlify.app/icons/icon-192.png"
+    }
+  ],
   "appVersionName": "1.0.0",
   "appVersionCode": 1
 }
