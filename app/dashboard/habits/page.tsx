@@ -112,7 +112,7 @@ export default function HabitsPage() {
             <Card key={h.id}>
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-500">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15 text-golddeep">
                     <Flame size={20} />
                   </span>
                   <div>
@@ -136,7 +136,7 @@ export default function HabitsPage() {
                 </div>
                 <button
                   onClick={() => void checkin(h)}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-emerald-700"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white transition hover:bg-primaryHover"
                 >
                   <Check size={16} /> Check in
                 </button>

@@ -4,27 +4,35 @@ export function Logo({ size = 36 }: { size?: number }) {
       <svg
         width={size}
         height={size}
-        viewBox="0 0 40 40"
+        viewBox="0 0 44 44"
         fill="none"
         role="img"
         aria-hidden="true"
-        className="shrink-0 drop-shadow-sm"
+        className="shrink-0"
       >
-        <rect x="3" y="6" width="34" height="30" rx="8" fill="#4F46E5" />
-        <rect x="3" y="6" width="34" height="9" rx="4.5" fill="#6366F1" />
-        <rect x="11" y="3" width="3.4" height="7" rx="1.7" fill="#C7D2FE" />
-        <rect x="25.6" y="3" width="3.4" height="7" rx="1.7" fill="#C7D2FE" />
+        {/* D letterform — the day, given shape */}
         <path
-          d="M13 24.5l6 6 8.5-11"
-          stroke="#fff"
-          strokeWidth="3.4"
+          d="M15 9 V35 M15 9 H22.5 A13.5 13.5 0 0 1 22.5 35 H15"
+          stroke="#1E4D3B"
+          strokeWidth="7"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
+        {/* Progress check inside the bowl */}
         <path
-          d="M31 9l1.1 2.6L34.7 12.7l-2.6 1.1L31 16.4l-1.1-2.6-2.6-1.1 2.6-1.1L31 9z"
-          fill="#A5B4FC"
+          d="M17.5 24.5l4 4 6.5-7.5"
+          stroke="#1E4D3B"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
+        {/* Rising sun — a day that counts */}
+        <circle cx="32" cy="10.5" r="4.6" fill="#D9A441" />
+        <g stroke="#D9A441" strokeWidth="2.2" strokeLinecap="round">
+          <line x1="32" y1="1.5" x2="32" y2="2.6" />
+          <line x1="38.5" y1="4" x2="37.7" y2="5.4" />
+          <line x1="41" y1="10.5" x2="39.4" y2="10.5" />
+        </g>
       </svg>
       <span className="text-[22px] font-extrabold tracking-tight text-ink">DAYLY</span>
     </span>

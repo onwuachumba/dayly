@@ -42,14 +42,14 @@ export default function RemindersPage() {
     <main>
       <PageHeader title="Reminders" sub="The right nudge at the right time — never noise." />
 
-      <Card className="mb-5 border-amber-200/60 bg-amber-50/50">
+      <Card className="mb-5">
         <div className="flex items-start gap-3">
-          <BellRing size={20} className="mt-0.5 shrink-0 text-amber-500" />
+          <BellRing size={20} className="mt-0.5 shrink-0 text-golddeep" />
           <div className="text-sm leading-relaxed text-slate-600">
-            <p className="font-extrabold text-ink">Timed push reminders are coming soon.</p>
+            <p className="font-extrabold text-ink">Schedule a reminder</p>
             <p className="mt-1">
-              For now, reminders you create on tasks live here as a clean timeline. Use the form below to
-              schedule one — it will persist to your account.
+              Attach it to a task or keep it standalone — it persists to your account and
+              appears in your timeline and dashboard.
             </p>
           </div>
         </div>
@@ -72,10 +72,10 @@ export default function RemindersPage() {
           body="Schedule your first reminder above and DAYLY will keep it on your radar."
         />
       ) : (
-        <ol className="relative space-y-3 border-l-2 border-indigo-100 pl-5">
+        <ol className="relative space-y-3 border-l-2 border-pine-200 pl-5">
           {reminders.map((r) => (
             <li key={r.id} className="relative">
-              <span className="absolute -left-[27px] top-4 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-indigo-100" aria-hidden="true" />
+              <span className="absolute -left-[27px] top-4 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-pine-100" aria-hidden="true" />
               <Card className="!p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
@@ -115,6 +115,16 @@ function ScheduleForm({
   setError: (v: string | null) => void;
   setReminders: React.Dispatch<React.SetStateAction<Reminder[]>>;
 }) {
+  const [tasks, setTasks] = useState<{ id: string; title: string }[]>([]);
+  const [taskId, setTaskId] = useState("");
+
+  useEffect(() => {
+    api.tasks
+      .list("?take=100")
+      .then((d) => setTasks(d.items.filter((t) => t.status !== "DONE").map((t) => ({ id: t.id, title: t.title }))))
+      .catch(() => undefined);
+  }, []);
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!when) {
@@ -123,28 +133,48 @@ function ScheduleForm({
     }
     setError(null);
     try {
-      const { item } = await api.reminders.create({ remindAt: new Date(when).toISOString() });
+      const { item } = await api.reminders.create({
+        remindAt: new Date(when).toISOString(),
+        ...(taskId ? { taskId } : {}),
+      });
       setReminders((prev) => [item, ...prev].sort((a, b) => +new Date(a.remindAt) - +new Date(b.remindAt)));
       setWhen("");
+      setTaskId("");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to schedule reminder");
     }
   }
 
   return (
-    <form onSubmit={submit} className="mt-4 flex flex-col gap-2 sm:flex-row">
-      <label htmlFor="rem-when" className="sr-only">Date and time</label>
-      <input
-        id="rem-when"
-        type="datetime-local"
-        required
-        value={when}
-        onChange={(e) => setWhen(e.target.value)}
-        className="min-w-0 flex-1 rounded-xl border-2 border-slate-200 bg-white px-3.5 py-2.5 text-[15px] focus:border-primary focus:outline-none"
-      />
+    <form onSubmit={submit} className="mt-4 flex flex-col gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row">
+        <label htmlFor="rem-task" className="sr-only">Attach to a task (optional)</label>
+        <select
+          id="rem-task"
+          value={taskId}
+          onChange={(e) => setTaskId(e.target.value)}
+          className="min-w-0 flex-1 rounded-xl border-2 border-slate-200 bg-white px-3.5 py-2.5 text-[15px] text-ink focus:border-primary focus:outline-none"
+        >
+          <option value="">Standalone reminder (no task)</option>
+          {tasks.map((t) => (
+            <option key={t.id} value={t.id}>
+              {t.title}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="rem-when" className="sr-only">Date and time</label>
+        <input
+          id="rem-when"
+          type="datetime-local"
+          required
+          value={when}
+          onChange={(e) => setWhen(e.target.value)}
+          className="min-w-0 flex-1 rounded-xl border-2 border-slate-200 bg-white px-3.5 py-2.5 text-[15px] focus:border-primary focus:outline-none"
+        />
+      </div>
       <button
         type="submit"
-        className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-primary px-5 py-2.5 text-[15px] font-bold text-white transition hover:bg-primaryHover"
+        className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-primary px-5 py-2.5 text-[15px] font-bold text-white transition hover:bg-primaryHover"
       >
         <CalendarPlus size={18} /> Schedule
       </button>

@@ -102,12 +102,12 @@ export default function CalendarPage() {
                       "flex min-h-[44px] flex-col items-center justify-center rounded-xl text-sm font-bold transition",
                       selected === dayKey(d)
                         ? "bg-primary text-white shadow-sm"
-                        : "text-ink hover:bg-indigo-50",
+                        : "text-ink hover:bg-pine-50",
                     )}
                   >
                     {d.getDate()}
                     {(byDay.get(dayKey(d)) || []).length > 0 && (
-                      <span className={cn("mt-0.5 h-1.5 w-1.5 rounded-full", selected === dayKey(d) ? "bg-white" : "bg-primary")} aria-hidden="true" />
+                      <span className={cn("mt-0.5 h-1.5 w-1.5 rounded-full", selected === dayKey(d) ? "bg-white" : "bg-golddeep")} aria-hidden="true" />
                     )}
                   </button>
                 ),

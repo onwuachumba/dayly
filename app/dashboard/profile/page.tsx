@@ -30,7 +30,7 @@ export default async function ProfilePage() {
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <div className="flex items-center gap-4">
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-xl font-extrabold text-white">
+            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-xl font-extrabold text-white">
               {(row?.name || session?.user?.name || session?.user?.email || "D").charAt(0).toUpperCase()}
             </span>
             <div className="min-w-0">
@@ -41,11 +41,11 @@ export default async function ProfilePage() {
             </div>
           </div>
           <dl className="mt-5 space-y-2.5 text-sm">
-            <div className="flex justify-between rounded-xl bg-slate-50 px-3.5 py-2.5">
+            <div className="flex justify-between rounded-xl bg-cream px-3.5 py-2.5">
               <dt className="font-semibold text-muted">Member since</dt>
               <dd className="font-bold">{row ? new Date(row.createdAt).toLocaleDateString([], { month: "long", year: "numeric" }) : "—"}</dd>
             </div>
-            <div className="flex justify-between rounded-xl bg-slate-50 px-3.5 py-2.5">
+            <div className="flex justify-between rounded-xl bg-cream px-3.5 py-2.5">
               <dt className="font-semibold text-muted">Working hours</dt>
               <dd className="font-bold">{row?.workStart && row?.workEnd ? `${row.workStart} – ${row.workEnd}` : "Not set"}</dd>
             </div>
@@ -66,7 +66,7 @@ export default async function ProfilePage() {
               { label: "Goals", value: counts.goals },
               { label: "Habits", value: counts.habits },
             ].map((s) => (
-              <div key={s.label} className="rounded-2xl bg-slate-50 px-2 py-4">
+              <div key={s.label} className="rounded-2xl bg-cream px-2 py-4">
                 <p className="text-2xl font-extrabold">{s.value}</p>
                 <p className="text-xs font-bold text-muted">{s.label}</p>
               </div>

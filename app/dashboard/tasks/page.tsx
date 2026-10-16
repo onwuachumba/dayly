@@ -127,7 +127,7 @@ export default function TasksPage() {
           body={tasks.length === 0 ? "Capture everything on your mind — DAYLY will help you prioritize it." : "Nothing matches these filters. Try a different view."}
         />
       ) : (
-        <ul className="space-y-2.5">
+        <ul className="divide-y divide-stone-200/80 rounded-2xl border border-stone-200/80 bg-white/60 px-2 py-1">
           {filtered.map((t) => (
             <TaskCard
               key={t.id}

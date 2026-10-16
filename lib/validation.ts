@@ -58,6 +58,22 @@ export const reminderCreateSchema = z.object({
   remindAt: z.string().datetime(),
 });
 
+const timeLabel = z
+  .string()
+  .regex(/^([01]\d|2[0-3]):[0-5]\d$/, "Use HH:MM (24-hour)")
+  .max(5);
+
+export const profileUpdateSchema = z
+  .object({
+    name: z.string().min(1).max(120).optional(),
+    workStart: timeLabel.optional().nullable(),
+    workEnd: timeLabel.optional().nullable(),
+    notifyDaily: z.boolean().optional(),
+    quietStart: timeLabel.optional().nullable(),
+    quietEnd: timeLabel.optional().nullable(),
+  })
+  .refine((v) => Object.keys(v).length > 0, { message: "Nothing to update" });
+
 export function pagination(searchParams: URLSearchParams): { take: number; skip: number } {
   const take = Math.min(Math.max(Number(searchParams.get("take") ?? 50) || 50, 1), 100);
   const skip = Math.max(Number(searchParams.get("skip") ?? 0) || 0, 0);

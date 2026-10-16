@@ -142,7 +142,7 @@ export default function GoalsPage() {
                 value={g.progress}
                 onChange={(e) => void setProgress(g, Number(e.target.value))}
                 aria-label={`Progress for ${g.title}`}
-                className="mt-3 w-full accent-indigo-600"
+                className="mt-3 w-full accent-primary"
               />
               <p className="mt-1 text-xs font-semibold text-muted">Milestones — drag to update real progress</p>
             </Card>

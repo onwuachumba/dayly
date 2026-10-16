@@ -1,0 +1,32 @@
+{
+  "packageId": "com.dayly.app",
+  "host": "dayly001.netlify.app",
+  "name": "DAYLY",
+  "launcherName": "DAYLY",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#1E4D3B",
+  "navigationColor": "#1E4D3B",
+  "backgroundColor": "#FAF7F0",
+  "startUrl": "/",
+  "iconUrl": "https://dayly001.netlify.app/icons/icon-512.png",
+  "maskableIconUrl": "https://dayly001.netlify.app/icons/maskable-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "enableNotifications": false,
+  "shortcuts": [
+    {
+      "name": "Today's Plan",
+      "shortName": "Today",
+      "url": "https://dayly001.netlify.app/dashboard/today",
+      "chosenIconUrl": "https://dayly001.netlify.app/icons/icon-192.png"
+    },
+    {
+      "name": "My Tasks",
+      "shortName": "Tasks",
+      "url": "https://dayly001.netlify.app/dashboard/tasks",
+      "chosenIconUrl": "https://dayly001.netlify.app/icons/icon-192.png"
+    }
+  ],
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1
+}

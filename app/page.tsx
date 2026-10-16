@@ -54,7 +54,7 @@ function PreviewDashboard() {
   const rows = [
     { time: "9:00 AM", title: "Finish business proposal", tag: "High", tone: "bg-red-50 text-red-700", done: true },
     { time: "11:00 AM", title: "Call three clients", tag: "Medium", tone: "bg-amber-50 text-amber-800", done: true },
-    { time: "2:00 PM", title: "Client meeting", tag: "Fixed", tone: "bg-indigo-50 text-indigo-700", done: false },
+    { time: "2:00 PM", title: "Client meeting", tag: "Fixed", tone: "bg-pine-50 text-pine-700", done: false },
     { time: "4:00 PM", title: "Buy groceries", tag: "Low", tone: "bg-emerald-50 text-emerald-700", done: false },
     { time: "6:00 PM", title: "Exercise", tag: "Habit", tone: "bg-emerald-50 text-emerald-700", done: false },
   ];
@@ -64,7 +64,7 @@ function PreviewDashboard() {
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
           <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-          <span className="h-2.5 w-2.5 rounded-full bg-indigo-400" />
+          <span className="h-2.5 w-2.5 rounded-full bg-gold" />
         </div>
         <span className="text-xs font-bold text-slate-400">Today&apos;s Plan</span>
       </div>
@@ -72,7 +72,7 @@ function PreviewDashboard() {
         <p className="text-sm font-bold text-ink">Good morning 👋</p>
         <p className="text-xs text-muted">2 of 5 completed · 40%</p>
         <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100">
-          <div className="h-full w-2/5 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-400" />
+          <div className="h-full w-2/5 rounded-full bg-primary" />
         </div>
         <ul className="mt-4 space-y-2">
           {rows.map((r) => (
@@ -100,7 +100,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F8FC] text-ink">
+    <div className="min-h-screen bg-ivory text-ink">
       {/* Nav */}
       <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
@@ -123,12 +123,12 @@ export default async function Home() {
       </header>
 
       {/* Hero */}
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-2 lg:pt-20">
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-12 pt-10 sm:px-6 lg:grid-cols-2 lg:pt-14">
         <div>
-          <p className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-3 py-1 text-[13px] font-bold text-primary ring-1 ring-inset ring-indigo-200">
+          <p className="inline-flex items-center gap-1.5 rounded-full bg-pine-50 px-3 py-1 text-[13px] font-bold text-primary ring-1 ring-inset ring-pine-200">
             <Sparkles size={14} /> Your AI-powered everyday life companion
           </p>
-          <h1 className="mt-4 text-[42px] font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="mt-4 text-[38px] font-extrabold leading-[1.05] tracking-tight sm:text-5xl">
             Make Today Count.
           </h1>
           <p className="mt-4 max-w-lg text-lg leading-relaxed text-muted">
@@ -149,8 +149,8 @@ export default async function Home() {
       </section>
 
       {/* How it works */}
-      <section id="how" className="border-y border-slate-200/60 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section id="how" className="border-y border-stone-200/70 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-primary">How DAYLY works</p>
           <h2 className="mt-2 max-w-xl text-3xl font-extrabold tracking-tight sm:text-4xl">
             From scattered thoughts to a day that flows.
@@ -158,14 +158,14 @@ export default async function Home() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {JOURNEY.map(({ icon: Icon, title, body }) => (
               <Card key={title} className="transition hover:-translate-y-0.5 hover:shadow-[0_16px_32px_-20px_rgba(79,70,229,0.5)]">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-primary">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pine-50 text-primary">
                   <Icon size={20} />
                 </div>
                 <p className="mt-3 font-extrabold">{title}</p>
                 <p className="mt-1 text-sm leading-relaxed text-muted">{body}</p>
               </Card>
             ))}
-            <Card className="flex flex-col justify-center bg-ink text-white sm:col-span-2 lg:col-span-1">
+            <Card className="flex flex-col justify-center bg-pine-900 !border-pine-900 text-white sm:col-span-2 lg:col-span-1">
               <p className="text-lg font-extrabold leading-snug">Don&apos;t just give me a list. Help me figure out what to do.</p>
               <p className="mt-2 text-sm text-slate-300">That&apos;s the heart of DAYLY.</p>
             </Card>
@@ -174,7 +174,7 @@ export default async function Home() {
       </section>
 
       {/* Features */}
-      <section id="features" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section id="features" className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-primary">Why DAYLY</p>
         <h2 className="mt-2 max-w-xl text-3xl font-extrabold tracking-tight sm:text-4xl">
           Everything your day needs, in one calm place.
@@ -182,7 +182,7 @@ export default async function Home() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map(({ icon: Icon, title, body }) => (
             <Card key={title} className="transition hover:-translate-y-0.5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-primary">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pine-50 text-primary">
                 <Icon size={20} />
               </div>
               <p className="mt-3 font-extrabold">{title}</p>
@@ -194,9 +194,9 @@ export default async function Home() {
 
       {/* AI */}
       <section id="ai" className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-ink px-6 py-12 text-white sm:px-12">
-          <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-indigo-600/40 blur-3xl" aria-hidden="true" />
-          <div className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-indigo-400/20 blur-3xl" aria-hidden="true" />
+        <div className="relative overflow-hidden rounded-3xl bg-pine-900 px-6 py-12 text-white sm:px-12">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-pine-700/60 blur-3xl" aria-hidden="true" />
+          <div className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-gold/20 blur-3xl" aria-hidden="true" />
           <p className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[13px] font-bold ring-1 ring-inset ring-white/20">
             <BrainCircuit size={14} /> Intelligent planning
           </p>
@@ -212,15 +212,15 @@ export default async function Home() {
             Advanced conversational AI planning is on the roadmap — today DAYLY ships smart prioritization,
             realistic scheduling, and flexible rescheduling.
           </p>
-          <Link href="/sign-up" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-[15px] font-bold text-ink transition hover:bg-indigo-50">
+          <Link href="/sign-up" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-[15px] font-bold text-pine-900 transition hover:bg-golddeep hover:text-white">
             Try it free <ArrowRight size={18} />
           </Link>
         </div>
       </section>
 
       {/* Who */}
-      <section id="who" className="border-t border-slate-200/60 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section id="who" className="border-t border-stone-200/70 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-primary">Who it&apos;s for</p>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Built for busy people like you.</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -232,7 +232,7 @@ export default async function Home() {
               </Card>
             ))}
           </div>
-          <div className="mt-12 rounded-3xl border border-indigo-100 bg-indigo-50/60 px-6 py-10 text-center sm:px-12">
+          <div className="mt-12 rounded-3xl border border-pine-200 bg-pine-50 px-6 py-10 text-center sm:px-12">
             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Your day. Your priorities. Your progress.</h2>
             <Link href="/sign-up" className={`${btnPrimary} mt-6`}>
               Start Making Today Count <ArrowRight size={18} />
